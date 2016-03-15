@@ -81,9 +81,12 @@ public class PingAgent extends Agent
 				logger.error(line);
 	        }
 			logger.debug("Avg: " + avgRespTime + ", Min: " + minRespTime + ", Max: " + maxRespTime + ", Good pings: " + goodPings + ", Bad pings: " + unreachablePings);
-			reportMetric("LocalPingCheck/RespTimeAverage", "double", avgRespTime);
-			reportMetric("LocalPingCheck/RespTimeMinimum", "double", minRespTime);
-			reportMetric("LocalPingCheck/RespTimeMaximum", "double", maxRespTime);
+			if (goodPings>0)
+			{
+				reportMetric("LocalPingCheck/RespTimeAverage", "double", avgRespTime);
+				reportMetric("LocalPingCheck/RespTimeMinimum", "double", minRespTime);
+				reportMetric("LocalPingCheck/RespTimeMaximum", "double", maxRespTime);
+			}
 			reportMetric("LocalPingCheck/PingsGood", "count", goodPings);
 			reportMetric("LocalPingCheck/PingsUnreachable", "count", unreachablePings);
 		} catch (IOException e)

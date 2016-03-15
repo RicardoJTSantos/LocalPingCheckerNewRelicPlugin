@@ -51,8 +51,11 @@
                 <attribute name="Built-Date" value="${TODAY}"/>
                 <attribute name="Specification-Version" value="${version}"/>
                 <attribute name="Implementation-Version" value="${version} ${TODAY}"/>
+				<attribute name="Main-Class" value="com.ricardosantos.localpingchecker.Main"/>
             </manifest>
             <fileset dir="${builddir}"/>
+        	<zipfileset dir="." includes="config/newrelic.json" fullpath="newrelic.json"/>
+        	<zipfileset dir="." includes="config/plugin.json" fullpath="plugin.json"/>
             <zipfileset src="${json-simple.jar}"/>
             <zipfileset src="${logback-classic.jar}"/>
             <zipfileset src="${logback-core.jar}"/>
