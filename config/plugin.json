@@ -1,0 +1,10 @@
+{
+	"agents": [
+		{
+			"agentName" : "Local Ping Checker",
+			"reportMetricsToServers" : "true",
+			"ipToPing" : "8.8.8.8",
+			"pingsPerPollExecution" : "50",
+		},
+	]
+}
