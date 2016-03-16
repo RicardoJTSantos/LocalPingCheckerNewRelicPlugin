@@ -61,7 +61,7 @@ public class PingAgent extends Agent
 						if (minRespTime>respTime) minRespTime = respTime;
 						if (maxRespTime<respTime) maxRespTime = respTime;
 					}
-					else if (line.startsWith("Request timeout"))
+					else if (line.startsWith("Request timeout") || line.startsWith("No route to host"))
 					{
 						unreachablePings++;
 					}
@@ -87,6 +87,8 @@ public class PingAgent extends Agent
 				reportMetric("LocalPingCheck/RespTimeMinimum", "double", minRespTime);
 				reportMetric("LocalPingCheck/RespTimeMaximum", "double", maxRespTime);
 			}
+			if (goodPings + unreachablePings != 50)
+				logger.error("Hmm... numbers don't add up. Good pings: " + goodPings + ", unreachable pings: " + unreachablePings);
 			reportMetric("LocalPingCheck/PingsGood", "count", goodPings);
 			reportMetric("LocalPingCheck/PingsUnreachable", "count", unreachablePings);
 		} catch (IOException e)
